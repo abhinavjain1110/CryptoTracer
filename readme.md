@@ -15,18 +15,12 @@ version: '3.8'
 services:
   backend:
     image: ghcr.io/0xpsyduck/crypto-tracer-backend:latest
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
     ports:
       - "34000:5000"
   
 
   frontend:
     image: ghcr.io/0xpsyduck/crypto-tracer-frontend:latest
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
     ports:
       - "35000:80"
 ```
