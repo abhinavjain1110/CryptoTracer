@@ -1,14 +1,16 @@
 ## Casper FFG
 LFG 🚀🚀🚀
 
-### Docker install steps
-1. Pull the images
+### 🐳 Docker install steps
+0. Install `docker` and `docker compose`, or `docker desktop` for ease of use, refer to [offical documentation](https://docs.docker.com/desktop/)
+
+1. Pull these images
 ```
 docker pull ghcr.io/0xpsyduck/crypto-tracer-backend:latest && \
 docker pull ghcr.io/0xpsyduck/crypto-tracer-frontend:latest
 ```
 
-2. In a new folder create a new file called `compose.yaml` and copy these content
+2. In a new folder create a new file called `compose.yaml` and paste these lines
 ```
 version: '3.8'
 
