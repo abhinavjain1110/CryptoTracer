@@ -18,7 +18,6 @@ services:
     ports:
       - "34000:5000"
   
-
   frontend:
     image: ghcr.io/0xpsyduck/crypto-tracer-frontend:latest
     ports:
