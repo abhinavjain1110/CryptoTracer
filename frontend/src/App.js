@@ -62,7 +62,7 @@ const App = () => {
   const handleFetchTransactions = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5000/api/transactions/${address}`);
+      const response = await axios.get(`http://192.168.29.169:34000/api/transactions/${address}`);
       // Combine received and sent transactions into a single array
       const allTransactions = [...response.data.received, ...response.data.sent];
       setTransactions(allTransactions);
