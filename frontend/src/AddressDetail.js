@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
+//const BACKEND_SERVER_URL = process.env.BACKEND_SERVER_URL || "192.168.29.169:34000";
+
 const AddressDetail = () => {
   const { addressId } = useParams();
   const [transactions, setTransactions] = useState([]);
@@ -10,7 +12,7 @@ const AddressDetail = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get(`http://backend:5000192.168.29.169:34000/api/transactions/${addressId}`);
+        const response = await axios.get(`http://localhost:34000/api/transactions/${addressId}`);
         setTransactions(response.data.received.concat(response.data.sent)); // Combine received and sent transactions
       } catch (error) {
         console.error('Error fetching transactions:', error);
