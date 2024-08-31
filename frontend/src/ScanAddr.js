@@ -20,6 +20,12 @@ const ScanAddr = () => {
     navigate('/');
   };
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(data).then(() => {
+      alert('Copied to clipboard!');
+    });
+  };
+
   return (
     <div className="container mt-5">
       <h2>Scan QR Code</h2>
@@ -31,7 +37,15 @@ const ScanAddr = () => {
           style={{ width: '100%' }}
         />
       </div>
-      <p className="mt-3">Scanned data: {data}</p>
+      <div className="mt-3">
+        <h3>Scanned data:</h3>
+        <div className="input-group">
+          <input type="text" className="form-control form-control-lg" value={data} readOnly />
+          <div className="input-group-append">
+            <button className="btn btn-outline-secondary" type="button" onClick={handleCopy}>Copy</button>
+          </div>
+        </div>
+      </div>
       <button className="btn btn-primary mt-3" onClick={handleBack}>Back to Home</button>
     </div>
   );
