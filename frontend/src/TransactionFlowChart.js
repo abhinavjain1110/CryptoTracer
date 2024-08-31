@@ -103,20 +103,21 @@ const TransactionFlowChart = ({ transactions, title }) => {
 
   useEffect(() => {
     const width = 1200;
-    const height = 800;
+    const height = 750;
 
     const svg = d3.select(ref.current)
       .attr('width', width)
-      .attr('height', height);
+      .attr('height', height)
+      .style('background-color', '#3D3A4A') // Dark background
+      .style('color', '#0ff'); // Neon blue text
 
-    svg.selectAll('*').remove(); // Clear previous render
+    svg.selectAll('*').remove();
 
-    // Prepare nodes and links
-    const nodes = Array.from(new Set(transactions.flatMap(tx => [tx.from, tx.to])), id => ({ id }));
-    const links = transactions.map(tx => ({
-      source: tx.from,
-      target: tx.to
-    }));
+    // Limit the transactions to 75
+    const limitedTransactions = transactions.slice(0, 75);
+
+    const nodes = Array.from(new Set(limitedTransactions.flatMap(tx => [tx.from, tx.to])), id => ({ id }));
+    const links = limitedTransactions.map(tx => ({ source: tx.from, target: tx.to }));
 
     const simulation = d3.forceSimulation(nodes)
       .force('link', d3.forceLink(links).id(d => d.id))
@@ -124,7 +125,6 @@ const TransactionFlowChart = ({ transactions, title }) => {
       .force('center', d3.forceCenter(width / 2, height / 2))
       .force('collide', d3.forceCollide(50));
 
-    // Add arrow markers
     svg.append('defs').selectAll('marker')
       .data(['end'])
       .enter().append('marker')
@@ -136,9 +136,9 @@ const TransactionFlowChart = ({ transactions, title }) => {
       .attr('markerHeight', 10)
       .attr('orient', 'auto')
       .append('path')
-      .attr('d', 'M0,-5L10,0L0,5');
+      .attr('d', 'M0,-5L10,0L0,5')
+      .attr('fill', '#0ff'); // Neon blue arrow
 
-    // Add links
     const linkElements = svg.append('g')
       .selectAll('line')
       .data(links)
@@ -147,7 +147,6 @@ const TransactionFlowChart = ({ transactions, title }) => {
       .attr('stroke-width', 3)
       .attr('marker-end', 'url(#arrow-end)');
 
-    // Add nodes
     const nodeElements = svg.append('g')
       .selectAll('circle')
       .data(nodes)
@@ -155,16 +154,19 @@ const TransactionFlowChart = ({ transactions, title }) => {
       .attr('r', 10)
       .attr('fill', '#1f77b4')
       .on('click', (event, d) => {
-        navigate(`/address/${d.id}`);
+        navigate(`/history/${d.id}`);
+      })
+      .on('mouseover', (event, d) => {
+        d3.select('#tooltip')
+          .style('left', event.pageX + 'px')
+          .style('top', event.pageY - 28 + 'px')
+          .style('opacity', 1)
+          .text(d.id);
+      })
+      .on('mouseout', () => {
+        d3.select('#tooltip')
+          .style('opacity', 0);
       });
-
-    svg.append('g')
-      .selectAll('text')
-      .data(nodes)
-      .enter().append('text')
-      .attr('x', 12)
-      .attr('y', 4)
-      .text(d => d.id.substring(0, 10) + '...');
 
     simulation.on('tick', () => {
       linkElements
@@ -176,22 +178,36 @@ const TransactionFlowChart = ({ transactions, title }) => {
       nodeElements
         .attr('cx', d => d.x)
         .attr('cy', d => d.y);
-
-      svg.selectAll('text')
-        .attr('x', d => d.x + 12)
-        .attr('y', d => d.y + 4);
     });
+
+    // Add tooltip element
+    if (!d3.select('#tooltip').node()) {
+      d3.select('body').append('div')
+        .attr('id', 'tooltip')
+        .style('position', 'absolute')
+        .style('padding', '10px')
+        .style('background', 'rgba(0, 0, 0, 0.7)')
+        .style('color', '#0ff')
+        .style('border-radius', '5px')
+        .style('pointer-events', 'none')
+        .style('opacity', 0);
+    }
   }, [transactions, navigate]);
 
   return (
     <div>
-      <h3>{title}</h3>
+      <h3 style={{marginLeft:"2", color: 'white' }}>{title}</h3> {/* Neon blue text */}
       <svg ref={ref}></svg>
     </div>
   );
 };
 
 export default TransactionFlowChart;
+
+
+
+
+
 
 
 

@@ -17,14 +17,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
-
-// Create a root
+import './index.css';
+import Footer from './Footer';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// Render the App component wrapped in Router
 root.render(
   <Router>
     <App />
+    <Footer/>
   </Router>
 );
+
 
