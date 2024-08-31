@@ -62,6 +62,8 @@ app.get('/api/transactions/:address', async (req, res) => {
         module: 'account',
         action: 'txlist',
         address,
+        page: '1',
+        offset: '75',
         sort: 'desc',
         apikey: apiKey
       }
