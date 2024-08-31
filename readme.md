@@ -6,8 +6,8 @@ LFG 🚀🚀🚀
 
 - Pull these images
 ```
-docker pull ghcr.io/0xpsyduck/crypto-tracer-backend:latest && \
-docker pull ghcr.io/0xpsyduck/crypto-tracer-frontend:latest
+docker pull ghcr.io/0xpsyduck/crypto-tracer-backend:local && \
+docker pull ghcr.io/0xpsyduck/crypto-tracer-frontend:local
 ```
 
 - In a new folder create a new file called `compose.yaml` and paste these lines
@@ -16,12 +16,12 @@ version: '3.8'
 
 services:
   backend:
-    image: ghcr.io/0xpsyduck/crypto-tracer-backend:latest
+    image: ghcr.io/0xpsyduck/crypto-tracer-backend:local
     ports:
       - "34000:5000"
   
   frontend:
-    image: ghcr.io/0xpsyduck/crypto-tracer-frontend:latest
+    image: ghcr.io/0xpsyduck/crypto-tracer-frontend:local
     ports:
       - "35000:80"
 ```
