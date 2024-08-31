@@ -47,38 +47,60 @@ const App = () => {
 
 export default App;
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import TransactionFlowChart from './TransactionFlowChart';
-import { Routes, Route, useNavigate, useParams } from 'react-router-dom';
-import './styles.css';
+import AddressDetail from './AddressDetail'; // Ensure this is imported correctly
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles.css';
 
 const App = () => {
   const [address, setAddress] = useState('');
   const [transactions, setTransactions] = useState([]);
+  const [balance, setBalance] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleFetchTransactions = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5000/api/transactions/${address}?limit=100`);
-      const allTransactions = [...response.data.received, ...response.data.sent];
-      setTransactions(allTransactions.slice(0, 100)); // Limit to 100 transactions
+      const [txResponse, balResponse] = await Promise.all([
+        axios.get(`http://localhost:5000/api/transactions/${address}`),
+        axios.get(`http://localhost:5000/api/balance/${address}`)
+      ]);
+
+      console.log('Transaction Response:', txResponse.data);
+      console.log('Balance Response:', balResponse.data);
+
+      const allTransactions = [...txResponse.data.received, ...txResponse.data.sent];
+      setTransactions(allTransactions.slice(0, 100));
+
+      const balanceWei = balResponse.data.balance;
+      console.log('Balance Wei:', balanceWei);
+      setBalance(balanceWei ? parseFloat(balanceWei) : 0);
     } catch (error) {
-      console.error('Error fetching transactions:', error);
+      console.error('Error fetching data:', error);
     } finally {
       setLoading(false);
     }
   };
 
+  /* const weiToEth = (wei) => {
+    const eth = wei / 1e18;
+    console.log('ETH Value:', eth);
+    return eth.toFixed(4);
+  }; */
+
+  // Generate Google search link
+  const googleSearchLink = address ? `https://www.google.com/search?q=Ethereum+address+${encodeURIComponent(address)}` : '#';
+
   return (
     <div className="container">
-      <h1 className="text-center" style={{ fontWeight: 'bold', marginBottom: '2' }}>
-        Crypto Transaction Flow
+      <h1 className="text-center" style={{ fontWeight: 'bold', marginBottom: '3' }}>
+        <a href='/' style={{ color: 'black', textDecoration: 'none' }}>Crypto Transaction Flow</a>
       </h1>
-      <div className="input-group mb-3">
+      <div className="input-group mb-2">
         <input
           type="text"
           className="form-control"
@@ -92,6 +114,31 @@ const App = () => {
           </button>
         </div>
       </div>
+      {balance !== null && (
+        <div className="mb-3">
+          {/* <h4>Balance: {(balance)} ETH</h4> */}
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Address</th>
+                <th>Balance (ETH)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{address}</td>
+                <td>{(balance)}</td>
+              </tr>
+            </tbody>
+          </table>
+          {/* Google search link */}
+          <div className="mt-3">
+            <a href={googleSearchLink} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
+              Search Address on Google
+            </a>
+          </div>
+        </div>
+      )}
       <div className="chart-container">
         <Routes>
           <Route
@@ -111,38 +158,13 @@ const App = () => {
   );
 };
 
-const AddressDetail = () => {
-  const { addressId } = useParams();
-  const [transactionHistory, setTransactionHistory] = useState([]);
-  const navigate = useNavigate(); // Import useNavigate
-
-  useEffect(() => {
-    const fetchTransactionHistory = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/api/transactions/${addressId}?limit=100`);
-        const allTransactions = [...response.data.received, ...response.data.sent];
-        setTransactionHistory(allTransactions);
-      } catch (error) {
-        console.error('Error fetching transaction history:', error);
-      }
-    };
-
-    fetchTransactionHistory();
-  }, [addressId]);
-
-  return (
-    <div className="container mt-5">
-      <h2>Transaction History for Address: {addressId}</h2>
-      <TransactionFlowChart
-        transactions={transactionHistory}
-        //title={`${addressId}`}
-        onNodeClick={(nodeAddress) => navigate(`/history/${nodeAddress}`)}
-      />
-    </div>
-  );
-};
-
 export default App;
+
+
+
+
+
+
 
 
 

@@ -71,3 +71,10 @@ body, html {
   width: 100%;
   background-color: white;
 }
+.footer-divider {
+  border: none;
+  height: 2px; /* Increase the height for a thicker line */
+  background: linear-gradient(to right, rgb(7, 6, 7), #040124); /* Gradient effect */
+  margin: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
