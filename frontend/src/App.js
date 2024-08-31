@@ -11,7 +11,7 @@ const App = () => {
   const handleFetchTransactions = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://192.168.29.169:34000/api/transactions/${address}`);
+      const response = await axios.get(`http://localhost:5000/api/transactions/${address}`);
       setTransactions(response.data);
     } catch (error) {
       console.error('Error fetching transactions:', error);
@@ -63,7 +63,7 @@ const App = () => {
   const handleFetchTransactions = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://192.168.29.169:34000/api/transactions/${address}?limit=100`);
+      const response = await axios.get(`http://localhost:5000/api/transactions/${address}?limit=100`);
       const allTransactions = [...response.data.received, ...response.data.sent];
       setTransactions(allTransactions.slice(0, 100)); // Limit to 100 transactions
     } catch (error) {
@@ -108,7 +108,7 @@ const AddressDetail = () => {
   useEffect(() => {
     const fetchTransactionHistory = async () => {
       try {
-        const response = await axios.get(`http://192.168.29.169:34000/api/address/${addressId}?limit=100`);
+        const response = await axios.get(`http://localhost:5000/api/address/${addressId}?limit=100`);
         setTransactionHistory(response.data);
       } catch (error) {
         console.error('Error fetching transaction history:', error);

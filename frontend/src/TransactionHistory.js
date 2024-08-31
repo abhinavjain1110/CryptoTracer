@@ -12,7 +12,7 @@ const TransactionHistory = () => {
     const fetchTransactions = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://192.168.29.169:34000/api/transactions/${address}`);
+        const response = await axios.get(`http://localhost:5000/api/transactions/${address}`);
         setTransactions(response.data);
       } catch (error) {
         console.error('Error fetching transaction history:', error);
