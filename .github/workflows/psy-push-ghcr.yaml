@@ -13,6 +13,6 @@ jobs:
       - name: Build and push the image
         run: |
           docker login --username 0xpsyduck --password ${{secrets.PSY_PACKAGE}} ghcr.io
-          dokcer compose -f compose-local.yaml build
+          docker compose -f compose-local.yaml build
           docker push ghcr.io/0xpsyduck/crypto-tracer-backend:local
           docker push ghcr.io/0xpsyduck/crypto-tracer-frontend:local
