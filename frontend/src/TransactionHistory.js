@@ -25,8 +25,8 @@ const TransactionHistory = () => {
   }, [address]);
 
   return (
-    <div className="container mt-5" style={{ backgroundColor: '#3D3A4A', color: '#FF204E' }}> {/* Dark background with neon blue text */}
-      <h1 className="text-center"  style={{ color: '#FF204E' }}>Transaction History for {address}</h1>
+    <div className="container mt-5" style={{ backgroundColor: 'white', color: 'black' }}> {/* Dark background with neon blue text */}
+      <h1 className="text-center"  style={{ color: 'black' }}>Transaction History for {address}</h1>
       {loading ? (
         <p>Loading...</p>
       ) : (

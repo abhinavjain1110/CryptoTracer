@@ -23,7 +23,7 @@ const Home = () => {
   };
 
   return (
-    <div className="container mt-5" style={{ backgroundColor: '#3D3A4A', color: 'white' }}> {/* Dark background with neon blue text */}
+    <div className="container mt-1" style={{ backgroundColor: '#3D3A4A', color: 'white' }}> {/* Dark background with neon blue text */}
       <h1 className="text-center">Crypto Transaction Flow</h1>
       <div className="input-group mb-3">
         <input

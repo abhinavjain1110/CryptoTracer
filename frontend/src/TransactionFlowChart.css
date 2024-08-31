@@ -1,5 +1,13 @@
 .tooltip {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: visibility 0.1s;
+    position: absolute;
+    padding: 8px;
+    background-color: white;
+    border: 1px solid #0ff;
+    border-radius: 5px;
+    color: black;
+    visibility: hidden; /* Ensure visibility is controlled via JS */
+    pointer-events: none; /* Ensure the tooltip doesn’t interfere with mouse events */
+    opacity: 0; /* Initial opacity */
+    transition: opacity 0.3s ease; /* Smooth transition for visibility */
   }
   
