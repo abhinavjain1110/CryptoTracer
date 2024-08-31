@@ -207,7 +207,7 @@ const App = () => {
             }
           />
           <Route path="/history/:addressId" element={<AddressDetail />} />
-          <Route path="/scanaddr" element={<ScanAddr />} />
+          <Route path="/scanaddr" element={<ScanAddr />} />   
         </Routes>
       </div>
     </div>
