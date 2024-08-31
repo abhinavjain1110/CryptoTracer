@@ -51,7 +51,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Routes
+// Fetch transactions
 app.get('/api/transactions/:address', async (req, res) => {
   const address = req.params.address;
   const apiKey = process.env.ETHERSCAN_API_KEY;
@@ -80,9 +80,39 @@ app.get('/api/transactions/:address', async (req, res) => {
   }
 });
 
+// Fetch balance
+app.get('/api/balance/:address', async (req, res) => {
+  const address = req.params.address;
+  const apiKey = process.env.ETHERSCAN_API_KEY;
+
+  try {
+    const response = await axios.get('https://api-sepolia.etherscan.io/api', {
+      params: {
+        module: 'account',
+        action: 'balance',
+        address,
+        tag: 'latest',
+        apikey: apiKey
+      }
+    });
+
+    const balanceWei = response.data.result; // Balance in Wei
+    const balanceEth = parseFloat(balanceWei) / 1e18; // Convert Wei to Ether
+    console.log(`Balance for address ${address}: ${balanceWei} Wei (${balanceEth} Ether)`);
+
+    res.json({ balance: balanceEth }); // Send balance in Ether
+  } catch (error) {
+    console.error('Error fetching balance:', error);
+    res.status(500).json({ error: 'Error fetching balance' });
+  }
+});
+
 // Start server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+
+
 
   
