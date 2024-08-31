@@ -3,7 +3,6 @@ import axios from 'axios';
 import TransactionFlowChart from './TransactionFlowChart';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [address, setAddress] = useState('');
@@ -23,8 +22,6 @@ const Home = () => {
     }
   };
 
-  const navigate = useNavigate();
-
   return (
     <div className="container mt-1" style={{ backgroundColor: '#3D3A4A', color: 'white' }}> {/* Dark background with neon blue text */}
       <h1 className="text-center">Crypto Transaction Flow</h1>
@@ -40,9 +37,6 @@ const Home = () => {
           <button className="btn btn-secondary" onClick={handleFetchTransactions} disabled={loading}>
             {loading ? 'Loading...' : 'Fetch Transactions'}
           </button>
-          <button className="btn btn-primary ml-2" onClick={() => navigate('/scanaddr')}>
-            Scan Address
-          </button>
         </div>
       </div>
       <div className="chart-container">
@@ -51,4 +45,5 @@ const Home = () => {
     </div>
   );
 };
+
 export default Home;
