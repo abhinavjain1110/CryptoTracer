@@ -26,7 +26,7 @@ services:
   frontend:
     image: ghcr.io/0xpsyduck/crypto-tracer-frontend:local
     ports:
-      - "35000:80"
+        - "5500:80"
 ```
 
 - Run using docker compose
@@ -34,4 +34,4 @@ services:
 docker compose up -d
 ```
 
-- Access the site by going to `http://localhost:35000`
+- Access the site by going to `http://localhost:5500`

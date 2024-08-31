@@ -135,7 +135,7 @@ const AddressDetail = () => {
       <h2>Transaction History for Address: {addressId}</h2>
       <TransactionFlowChart
         transactions={transactionHistory}
-        title={`Flow for ${addressId}`}
+        //title={`${addressId}`}
         onNodeClick={(nodeAddress) => navigate(`/history/${nodeAddress}`)}
       />
     </div>

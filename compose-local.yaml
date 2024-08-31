@@ -16,4 +16,4 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "35000:80"
+      - "5500:80"
