@@ -113,8 +113,8 @@ const TransactionFlowChart = ({ transactions, title }) => {
 
     svg.selectAll('*').remove();
 
-    // Limit the transactions to 75
-    const limitedTransactions = transactions.slice(0, 75);
+    // Limit the transactions to 25
+    const limitedTransactions = transactions.slice(0, 25);
 
     const nodes = Array.from(new Set(limitedTransactions.flatMap(tx => [tx.from, tx.to])), id => ({ id }));
     const links = limitedTransactions.map(tx => ({ source: tx.from, target: tx.to }));
@@ -132,12 +132,12 @@ const TransactionFlowChart = ({ transactions, title }) => {
       .attr('viewBox', '0 -5 10 10')
       .attr('refX', 20)
       .attr('refY', 0)
-      .attr('markerWidth', 10)
-      .attr('markerHeight', 10)
+      .attr('markerWidth', 6)
+      .attr('markerHeight', 6)
       .attr('orient', 'auto')
       .append('path')
       .attr('d', 'M0,-5L10,0L0,5')
-      .attr('fill', '#0ff'); // Neon blue arrow
+      .attr('fill', 'black'); // Neon blue arrow
 
     const linkElements = svg.append('g')
       .selectAll('line')
