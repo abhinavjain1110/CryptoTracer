@@ -108,7 +108,7 @@ const TransactionFlowChart = ({ transactions, title }) => {
     const svg = d3.select(ref.current)
       .attr('width', width)
       .attr('height', height)
-      .style('background-color', '#3D3A4A') // Dark background
+      .style('background-color', 'white') // Dark background
       .style('color', '#0ff'); // Neon blue text
 
     svg.selectAll('*').remove();
@@ -196,7 +196,7 @@ const TransactionFlowChart = ({ transactions, title }) => {
 
   return (
     <div>
-      <h3 style={{marginLeft:"2", color: 'white' }}>{title}</h3> {/* Neon blue text */}
+      <h3 style={{ color: 'white' }}>{title}</h3> {/* Neon blue text */}
       <svg ref={ref}></svg>
     </div>
   );

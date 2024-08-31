@@ -1,7 +1,7 @@
 /* Global styles */
 body, html {
-  background-color: black;
-  color: #FF204E;
+  background-color: white;
+  color: black;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -13,8 +13,8 @@ body, html {
 
 /* Ensure the container and its child elements also follow the dark theme */
 .container {
-  background-color: black;
-  color: #FF204E;
+  background-color: white;
+  color: black;
   padding: 20px;
   flex: 1; /* This allows the container to take up the remaining space */
 }
@@ -22,15 +22,15 @@ body, html {
 /* Input fields and buttons */
 .input-group .form-control {
   background-color: white;
-  color: #FF204E;
+  color: black;
   border: 2px solid #555;
   border-radius: 5%;
 }
 
 .input-group .btn-primary {
-  background-color: rgb(163, 48, 73);
+  background-color: white(163, 48, 73);
   border-color:rgb(19, 5, 8) ;
-  color: white;
+  color: black;
   margin-left: 0.5cm;
 }
 
@@ -38,8 +38,8 @@ body, html {
 .chart-container {
   width: 100%;
   height: 800px;
-  background-color: #3D3A4A;
-  color: #FF204E;
+  background-color: white;
+  color: black;
 
 }
 
@@ -58,14 +58,16 @@ body, html {
 
 /* Footer styling */
 .footer {
-  background-color: #1a1a1a;
-  color: #0ff;
+  background-color: white;
+  color: black;
   padding: 20px 0;
   text-align: center;
   flex-shrink: 0; /* Ensures the footer stays at the bottom */
 }
 
 .footer a {
-  color: #0ff;
+  color: black;
   text-decoration: none;
+  width: 100%;
+  background-color: white;
 }
