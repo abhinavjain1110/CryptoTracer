@@ -50,10 +50,12 @@ export default App;
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import TransactionFlowChart from './TransactionFlowChart';
-import AddressDetail from './AddressDetail'; // Ensure this is imported correctly
+import TransactionFlowChart from './components/TransactionFlowChart';
+import AddressDetail from './components/AddressDetail'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles.css';
+import './components/styles.css';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 const App = () => {
   const [address, setAddress] = useState('');
@@ -86,79 +88,77 @@ const App = () => {
     }
   };
 
-  /* const weiToEth = (wei) => {
-    const eth = wei / 1e18;
-    console.log('ETH Value:', eth);
-    return eth.toFixed(4);
-  }; */
-
-  // Generate Google search link
-  const googleSearchLink = address ? `https://www.google.com/search?q=Ethereum+address+${encodeURIComponent(address)}` : '#';
+  const googleSearchLink = address ? `https://www.google.com/search?q=${encodeURIComponent(address)}` : '#';
 
   return (
-    <div className="container">
-      <h1 className="text-center" style={{ fontWeight: 'bold', marginBottom: '3' }}>
-        <a href='/' style={{ color: 'black', textDecoration: 'none' }}>Crypto Transaction Flow</a>
-      </h1>
-      <div className="input-group mb-2">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Enter Ethereum Address"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-        />
-        <div className="input-group-append">
-          <button className="btn btn-dark mx-3" onClick={handleFetchTransactions} disabled={loading}>
-            {loading ? 'Loading...' : 'Fetch Transactions'}
-          </button>
-        </div>
-      </div>
-      {balance !== null && (
-        <div className="mb-3">
-          {/* <h4>Balance: {(balance)} ETH</h4> */}
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>Address</th>
-                <th>Balance (ETH)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{address}</td>
-                <td>{(balance)}</td>
-              </tr>
-            </tbody>
-          </table>
-          {/* Google search link */}
-          <div className="mt-3">
-            <a href={googleSearchLink} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-              Search Address on Google
-            </a>
+    <div className="d-flex flex-column min-vh-100">
+      <NavBar />
+      <div className="container flex-grow-1">
+        <h1 className="text-center" style={{ fontWeight: 'bold', marginBottom: '3',fontFamily:'sans-serif' }}>
+          <a href='/' style={{ color: 'black', textDecoration: 'none' }}>Crypto Transaction Flow</a>
+        </h1>
+        <div className="input-group mb-2">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Enter Ethereum Address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+          <div className="input-group-append">
+            <button className="btn btn-dark mx-3" onClick={handleFetchTransactions} disabled={loading}>
+              {loading ? 'Loading...' : 'Fetch Transactions'}
+            </button>
           </div>
         </div>
-      )}
-      <div className="chart-container">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <TransactionFlowChart
-                transactions={transactions}
-                title="Transaction Flow"
-                onNodeClick={(nodeAddress) => navigate(`/history/${nodeAddress}`)}
-              />
-            }
-          />
-          <Route path="/history/:addressId" element={<AddressDetail />} />
-        </Routes>
+        {balance !== null && (
+          <div className="mb-3">
+            {/* <h4>Balance: {(balance)} ETH</h4> */}
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>Address</th>
+                  <th>Balance (ETH)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{address}</td>
+                  <td>{balance}</td>
+                </tr>
+              </tbody>
+            </table>
+            {/* Google search link */}
+            <div className="mt-3">
+              <a href={googleSearchLink} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
+                Search Address on Google
+              </a>
+            </div>
+          </div>
+        )}
+        <div className="chart-container">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <TransactionFlowChart
+                  transactions={transactions}
+                  //title="Transaction Flow"
+                  onNodeClick={(nodeAddress) => navigate(`/history/${nodeAddress}`)}
+                />
+              }
+            />
+            <Route path="/history/:addressId" element={<AddressDetail />} />
+          </Routes>
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };
 
 export default App;
+
 
 
 
