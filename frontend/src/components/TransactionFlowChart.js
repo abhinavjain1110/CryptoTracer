@@ -108,12 +108,11 @@ const TransactionFlowChart = ({ transactions, title }) => {
     const svg = d3.select(ref.current)
       .attr('width', width)
       .attr('height', height)
-      .style('background-color', 'white') // Dark background
-      .style('color', '#0ff'); // Neon blue text
+      .style('background-color', 'white') 
+      .style('color', '#0ff'); 
 
     svg.selectAll('*').remove();
 
-    // Limit the transactions to 25
     const limitedTransactions = transactions.slice(0, 25);
 
     const nodes = Array.from(new Set(limitedTransactions.flatMap(tx => [tx.from, tx.to])), id => ({ id }));
@@ -180,7 +179,6 @@ const TransactionFlowChart = ({ transactions, title }) => {
         .attr('cy', d => d.y);
     });
 
-    // Add tooltip element
     if (!d3.select('#tooltip').node()) {
       d3.select('body').append('div')
         .attr('id', 'tooltip')

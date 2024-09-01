@@ -42,16 +42,15 @@ app.listen(port, () => {
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
-require('dotenv').config(); // For loading environment variables from .env file
+require('dotenv').config(); 
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Middleware
+
 app.use(cors());
 app.use(express.json());
 
-// Fetch transactions
 app.get('/api/transactions/:address', async (req, res) => {
   const address = req.params.address;
   const apiKey = process.env.ETHERSCAN_API_KEY;
@@ -80,7 +79,6 @@ app.get('/api/transactions/:address', async (req, res) => {
   }
 });
 
-// Fetch balance
 app.get('/api/balance/:address', async (req, res) => {
   const address = req.params.address;
   const apiKey = process.env.ETHERSCAN_API_KEY;
@@ -98,16 +96,14 @@ app.get('/api/balance/:address', async (req, res) => {
 
     const balanceWei = response.data.result; // Balance in Wei
     const balanceEth = parseFloat(balanceWei) / 1e18; // Convert Wei to Ether
-    console.log(`Balance for address ${address}: ${balanceWei} Wei (${balanceEth} Ether)`);
 
-    res.json({ balance: balanceEth }); // Send balance in Ether
+    res.json({ balance: balanceEth }); 
   } catch (error) {
     console.error('Error fetching balance:', error);
     res.status(500).json({ error: 'Error fetching balance' });
   }
 });
 
-// Start server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

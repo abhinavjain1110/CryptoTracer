@@ -79,15 +79,7 @@ const AddressDetail = () => {
     fetchTransactionHistory();
   }, [addressId]);
 
- /*  // Convert Wei to ETH
-  const weiToEth = (wei) => {
-    const eth = wei / 1e18;
-    console.log(`Wei: ${wei}, ETH: ${eth}`);
-    return eth.toFixed(4);
-  }; */
-
-  // Generate Google search link
-  const googleSearchLink = addressId ? `https://www.google.com/search?q=Ethereum+address+${encodeURIComponent(addressId)}` : '#';
+  const googleSearchLink = addressId ? `https://www.google.com/search?q=${encodeURIComponent(addressId)}` : '#';
 
   return (
     <div className="container">

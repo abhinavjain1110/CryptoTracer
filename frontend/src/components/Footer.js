@@ -14,15 +14,17 @@ import React from 'react';
 import './styles.css';
 
 const Footer = () => (
-  <div>
-    <hr className="footer-divider" />
+  <div className="wrapper">
+    <div className="content">
+      {/* Other content goes here */}
+    </div>
     <footer className="footer bg-white text-dark py-1 mt-auto">
       <div className="container" style={{ color: 'black' }}>
         <span className="text-dark">
           <h5>
             Developed by Casper FFG. Check out the code on{' '}
             <a
-              href="https://github.com/abhinavjain1110/WebTracker"
+              href="https://github.com/abhinavjain1110/CryptoTracer/tree/test"
               target="_blank"
               rel="noopener noreferrer"
               className="text-dark"
