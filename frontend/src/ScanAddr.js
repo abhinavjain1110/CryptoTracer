@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ScanAddr = () => {
   const [data, setData] = useState('No result');
+  const [copyButtonText, setCopyButtonText] = useState('Copy');
   const navigate = useNavigate();
 
   const handleScan = (result) => {
@@ -22,7 +23,8 @@ const ScanAddr = () => {
 
   const handleCopy = () => {
     navigator.clipboard.writeText(data).then(() => {
-      alert('Copied to clipboard!');
+      setCopyButtonText('Copied!');
+      setTimeout(() => setCopyButtonText('Copy'), 2000);
     });
   };
 
@@ -42,7 +44,9 @@ const ScanAddr = () => {
         <div className="input-group">
           <input type="text" className="form-control form-control-lg" value={data} readOnly />
           <div className="input-group-append">
-            <button className="btn btn-outline-secondary" type="button" onClick={handleCopy}>Copy</button>
+            <button className="btn btn-outline-secondary" type="button" onClick={handleCopy}>
+              {copyButtonText}
+            </button>
           </div>
         </div>
       </div>
