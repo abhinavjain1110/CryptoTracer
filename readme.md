@@ -1,6 +1,7 @@
-## Casper FFG 🚀🚀🚀
+## Team Casper FFG 🚀🚀🚀
 
-- Our solution to SIH PS. 1675 
+- Our solution to SIH PS. 1675
+[![demo video(https://i.ytimg.com/vi/PmodCBkelw4/maxresdefault.jpg)](https://youtu.be/PmodCBkelw4)]
 <br>
 
 ### 🐳 Docker install steps
