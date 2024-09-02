@@ -1,18 +1,21 @@
 ## Casper FFG 🚀🚀🚀
 
-### 🐳 Docker install steps
-- Install `docker` and `docker compose`, or just `docker desktop` for ease of use, refer to [offical documentation](https://docs.docker.com/desktop/)
+- Our solution to SIH PS. 1675 
 
-- Pull these images
+### 🐳 Docker install steps
+1. Install `docker` and `docker compose`, or just `docker desktop` for ease of use, refer to [offical documentation](https://docs.docker.com/desktop/)
+<br>
+
+2. Pull these images
 ```
 docker pull ghcr.io/0xpsyduck/crypto-tracer-backend:local && \
 docker pull ghcr.io/0xpsyduck/crypto-tracer-frontend:local
 ```
 
 > we use `Github Action's CI/CD pipeline` to automatically publish container images everytime we push on the repo, so you should always check for latest versions, or use something like [watchtower](https://github.com/containrrr/watchtower) for automating container updates
+<br>
 
-
-- In a new folder create a new file called `compose.yaml` and paste these lines
+3. In a new folder create a new file called `compose.yaml` and paste these lines
 ```
 version: '3.8'
 
@@ -27,10 +30,12 @@ services:
     ports:
         - "5500:80"
 ```
+<br>
 
-- Run using docker compose
+4. Run using docker compose
 ```
 docker compose up -d
 ```
+<br>
 
-- Access the site by going to `http://localhost:5500`
+5. Access the site by going to `http://localhost:5500`
