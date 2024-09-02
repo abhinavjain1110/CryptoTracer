@@ -57,6 +57,7 @@ import './components/styles.css';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import UpcomingFeatures from './components/UpcomingFeatures';
+import ScanAddr from './components/ScanAddr';
 
 const App = () => {
   const [address, setAddress] = useState('');
@@ -150,6 +151,7 @@ const App = () => {
               <Route path="/history/:addressId" element={<AddressDetail />} />
             </>
           )}
+          <Route path="/qr-scanner" element={<ScanAddr />} /> 
           <Route path="/upcoming-features" element={<UpcomingFeatures />} />
         </Routes>
       </div>
