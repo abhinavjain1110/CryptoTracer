@@ -9,7 +9,7 @@ docker pull ghcr.io/0xpsyduck/crypto-tracer-backend:local && \
 docker pull ghcr.io/0xpsyduck/crypto-tracer-frontend:local
 ```
 
-> we use `Github's CI/CD pipeline` to automatically publish container images everytime we push on the repo, so you should always check for latest versions, or use something like [watchtower](https://github.com/containrrr/watchtower) for automating container updates
+> we use `Github Action's CI/CD pipeline` to automatically publish container images everytime we push on the repo, so you should always check for latest versions, or use something like [watchtower](https://github.com/containrrr/watchtower) for automating container updates
 
 
 - In a new folder create a new file called `compose.yaml` and paste these lines
