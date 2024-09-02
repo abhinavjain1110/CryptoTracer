@@ -44,13 +44,13 @@ const ScanAddr = () => {
         <div className="input-group">
           <input type="text" className="form-control form-control-lg" value={data} readOnly />
           <div className="input-group-append">
-            <button className="btn btn-outline-secondary" type="button" onClick={handleCopy}>
+            <button className="btn btn-outline-secondary mx-3" type="button" onClick={handleCopy}>
               {copyButtonText}
             </button>
           </div>
         </div>
       </div>
-      <button className="btn btn-primary mt-3" onClick={handleBack}>Back to Home</button>
+      <button className="btn btn-dark mt-3" onClick={handleBack}>Back to Home</button>
     </div>
   );
 };
