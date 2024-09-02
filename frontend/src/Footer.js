@@ -19,8 +19,8 @@ const Footer = () => (
     <footer className="footer bg-white text-dark py-1 mt-auto">
       <div className="container" style={{ color: 'black' }}>
         <span className="text-dark">
-          <h5>
-            Developed by Casper FFG. Check out the code on{' '}
+          <p>
+            Developed by team <b>Casper FFG</b>. Check out the code on{' '}
             <a
               href="https://github.com/abhinavjain1110/WebTracker"
               target="_blank"
@@ -31,7 +31,7 @@ const Footer = () => (
               GitHub
             </a>
             .
-          </h5>
+          </p>
         </span>
       </div>
     </footer>
