@@ -54,6 +54,7 @@ import './styles.css';
 const AddressDetail = () => {
   const { addressId } = useParams();
   const [transactionHistory, setTransactionHistory] = useState([]);
+  const [creditScore, setCreditScore] = useState(null);
   const [balance, setBalance] = useState(null);
   const navigate = useNavigate();
 
@@ -71,6 +72,8 @@ const AddressDetail = () => {
         const balanceWei = balResponse.data.balance;
         console.log('Fetched Balance:', balanceWei);
         setBalance(balanceWei ? parseFloat(balanceWei) : 0);
+        const mockCreditScore = (Math.random() * (10-5)+5).toFixed(2);
+        setCreditScore(mockCreditScore);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -91,12 +94,14 @@ const AddressDetail = () => {
               <tr>
                 <th>Address</th>
                 <th>Balance (ETH)</th>
+                <th>Risk Score</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>{addressId}</td>
                 <td>{(balance)}</td>
+                <td>{creditScore}</td>
               </tr>
             </tbody>
           </table>

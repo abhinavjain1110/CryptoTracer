@@ -49,20 +49,23 @@ export default App;
  */
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import TransactionFlowChart from './components/TransactionFlowChart';
 import AddressDetail from './components/AddressDetail'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './components/styles.css';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
+import UpcomingFeatures from './components/UpcomingFeatures';
 
 const App = () => {
   const [address, setAddress] = useState('');
   const [transactions, setTransactions] = useState([]);
   const [balance, setBalance] = useState(null);
+  const [creditScore, setCreditScore] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleFetchTransactions = async () => {
     setLoading(true);
@@ -72,15 +75,14 @@ const App = () => {
         axios.get(`http://localhost:5000/api/balance/${address}`)
       ]);
 
-      console.log('Transaction Response:', txResponse.data);
-      console.log('Balance Response:', balResponse.data);
-
       const allTransactions = [...txResponse.data.received, ...txResponse.data.sent];
       setTransactions(allTransactions.slice(0, 100));
 
       const balanceWei = balResponse.data.balance;
-      console.log('Balance Wei:', balanceWei);
       setBalance(balanceWei ? parseFloat(balanceWei) : 0);
+
+      const mockCreditScore = (Math.random() * (10 - 7) + 7).toFixed(2);
+      setCreditScore(mockCreditScore);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -88,69 +90,68 @@ const App = () => {
     }
   };
 
-  const googleSearchLink = address ? `https://www.google.com/search?q=${encodeURIComponent(address)}` : '#';
+  const isUpcomingFeaturesPage = location.pathname === '/upcoming-features';
 
   return (
     <div className="d-flex flex-column min-vh-100">
       <NavBar />
       <div className="container flex-grow-1">
-        <h1 className="text-center" style={{ fontWeight: 'bold', marginBottom: '3',fontFamily:'sans-serif' }}>
-          <a href='/' style={{ color: 'black', textDecoration: 'none' }}>Crypto Transaction Flow</a>
-        </h1>
-        <div className="input-group mb-2">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter Ethereum Address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-          <div className="input-group-append">
-            <button className="btn btn-dark mx-3" onClick={handleFetchTransactions} disabled={loading}>
-              {loading ? 'Loading...' : 'Fetch Transactions'}
-            </button>
-          </div>
-        </div>
-        {balance !== null && (
-          <div className="mb-3">
-            {/* <h4>Balance: {(balance)} ETH</h4> */}
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th>Address</th>
-                  <th>Balance (ETH)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{address}</td>
-                  <td>{balance}</td>
-                </tr>
-              </tbody>
-            </table>
-            {/* Google search link */}
-            <div className="mt-3">
-              <a href={googleSearchLink} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-                Search Address on Google
-              </a>
-            </div>
-          </div>
-        )}
-        <div className="chart-container">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <TransactionFlowChart
-                  transactions={transactions}
-                  //title="Transaction Flow"
-                  onNodeClick={(nodeAddress) => navigate(`/history/${nodeAddress}`)}
-                />
-              }
-            />
-            <Route path="/history/:addressId" element={<AddressDetail />} />
-          </Routes>
-        </div>
+        <Routes>
+          {!isUpcomingFeaturesPage && (
+            <>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <h1 className="text-center" style={{ fontWeight: 'bold', marginBottom: '3', fontFamily: 'sans-serif' }}>
+                      <a href='/' style={{ color: 'black', textDecoration: 'none' }}>Crypto Transaction Flow</a>
+                    </h1>
+                    <div className="input-group mb-2">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter Ethereum Address"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                      />
+                      <div className="input-group-append">
+                        <button className="btn btn-dark mx-3" onClick={handleFetchTransactions} disabled={loading}>
+                          {loading ? 'Loading...' : 'Fetch Transactions'}
+                        </button>
+                      </div>
+                    </div>
+                    {balance !== null && (
+                      <div className="mb-3">
+                        <table className="table table-striped">
+                          <thead>
+                            <tr>
+                              <th>Address</th>
+                              <th>Balance (ETH)</th>
+                              <th>Risk Score</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{address}</td>
+                              <td>{balance}</td>
+                              <td>{creditScore}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
+                    <TransactionFlowChart
+                      transactions={transactions}
+                      onNodeClick={(nodeAddress) => navigate(`/history/${nodeAddress}`)}
+                    />
+                  </>
+                }
+              />
+              <Route path="/history/:addressId" element={<AddressDetail />} />
+            </>
+          )}
+          <Route path="/upcoming-features" element={<UpcomingFeatures />} />
+        </Routes>
       </div>
       <Footer />
     </div>
