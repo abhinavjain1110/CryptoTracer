@@ -1,13 +1,12 @@
 ## Team Casper FFG 🚀🚀🚀
 
 - Our solution to SIH PS. 1675, demo video ⤵️
-<br>
 
 [![demo video](https://i.ytimg.com/an_webp/PmodCBkelw4/mqdefault_6s.webp?du=3000&sqp=CMDL2LYG&rs=AOn4CLAyI9LTppzgD9vzsyUbw_uzgrSZZg)](https://www.youtube.com/watch?v=PmodCBkelw4)
 
 <br>
 
-### 🐳 Docker install steps
+## 🐳 Docker install steps
 1. Install `docker` and `docker compose`, or just `docker desktop` for ease of use, refer to [offical documentation](https://docs.docker.com/desktop/)
 <br>
 
