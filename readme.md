@@ -1,5 +1,4 @@
-## Casper FFG
-LFG 🚀🚀🚀
+## Casper FFG 🚀🚀🚀
 
 ### 🐳 Docker install steps
 - Install `docker` and `docker compose`, or just `docker desktop` for ease of use, refer to [offical documentation](https://docs.docker.com/desktop/)
