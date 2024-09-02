@@ -10,7 +10,7 @@ const NavBar = () => {
         <div className="collapse navbar-collapse">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/watchlist">Watchlist</Link>
+              <Link className="nav-link" to="https://t.me/+A-I3TPO6jl80NTFl">Watchlist</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/qr-scanner">QR Scanner</Link>
