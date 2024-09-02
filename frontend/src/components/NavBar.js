@@ -13,7 +13,10 @@ const NavBar = () => {
               <Link className="nav-link" to="/watchlist">Watchlist</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/qr-scanner">QR Code Scanner</Link>
+              <Link className="nav-link" to="/qr-scanner">QR Scanner</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/upcoming-features">Upcoming Features</Link>
             </li>
           </ul>
         </div>
