@@ -22,7 +22,7 @@ const Footer = () => (
       <div className="container" style={{ color: 'black' }}>
         <span className="text-dark">
           <h5>
-            Developed by Casper FFG. Check out the code on{' '}
+            Developed by team <b>Casper FFG</b>. Check out the code on{' '}
             <a
               href="https://github.com/abhinavjain1110/CryptoTracer/tree/test"
               target="_blank"
