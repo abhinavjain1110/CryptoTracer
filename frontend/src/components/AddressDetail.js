@@ -72,7 +72,7 @@ const AddressDetail = () => {
         const balanceWei = balResponse.data.balance;
         console.log('Fetched Balance:', balanceWei);
         setBalance(balanceWei ? parseFloat(balanceWei) : 0);
-        const mockCreditScore = (Math.random() * (10-5)+5).toFixed(2);
+        const mockCreditScore = (Math.random() * (10-1)+1).toFixed(2);
         setCreditScore(mockCreditScore);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -83,6 +83,8 @@ const AddressDetail = () => {
   }, [addressId]);
 
   const googleSearchLink = addressId ? `https://www.google.com/search?q=${encodeURIComponent(addressId)}` : '#';
+  const etherscanSearchLink = addressId ? `https://sepolia.etherscan.io/address/${encodeURIComponent(addressId)}` : '#';
+
 
   return (
     <div className="container">
@@ -101,14 +103,20 @@ const AddressDetail = () => {
               <tr>
                 <td>{addressId}</td>
                 <td>{(balance)}</td>
-                <td>{creditScore}</td>
+                <td style={{ color: creditScore < 4 ? 'green' : creditScore < 8 ? 'yellow' : 'red' }}>
+                  {creditScore}
+                </td>
               </tr>
             </tbody>
           </table>
           {/* Google search link */}
           <div className="mt-3">
             <a href={googleSearchLink} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-              Search Address on Google
+              Search on Google
+            </a>
+            <span className="mx-2"></span> {/* Added space between buttons */}
+            <a href={etherscanSearchLink} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
+              Search on Etherscan
             </a>
           </div>
         </div>

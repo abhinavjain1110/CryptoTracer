@@ -89,6 +89,9 @@ const AddressDetail = () => {
   // Generate Google search link
   const googleSearchLink = addressId ? `https://www.google.com/search?q=Ethereum+address+${encodeURIComponent(addressId)}` : '#';
 
+  // Generate Etherscan search link
+  const etherscanSearchLink = addressId ? `https://sepolia.etherscan.io/address/${encodeURIComponent(addressId)}` : '#';
+
   return (
     <div className="container">
       <h2>Transaction History for Address: {addressId}</h2>
@@ -110,8 +113,12 @@ const AddressDetail = () => {
           </table>
           {/* Google search link */}
           <div className="mt-3">
-            <a href={googleSearchLink} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-              Search Address on Google
+          <a href={googleSearchLink} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
+              Search on Google
+            </a>
+            <span className="mx-2"></span> {/* Added space between buttons */}
+            <a href={etherscanSearchLink} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
+              Search on Etherscan
             </a>
           </div>
         </div>

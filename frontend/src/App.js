@@ -135,7 +135,9 @@ const App = () => {
                             <tr>
                               <td>{address}</td>
                               <td>{balance}</td>
-                              <td>{creditScore}</td>
+                              <td style={{ color: creditScore < 4 ? 'green' : creditScore < 8 ? 'yellow' : 'red' }}>
+                                {creditScore}
+                              </td>
                             </tr>
                           </tbody>
                         </table>
