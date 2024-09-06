@@ -103,7 +103,7 @@ const AddressDetail = () => {
               <tr>
                 <td>{addressId}</td>
                 <td>{(balance)}</td>
-                <td style={{ color: creditScore < 4 ? 'green' : creditScore < 8 ? 'yellow' : 'red' }}>
+                <td style={{ color: creditScore < 4 ? 'green' : creditScore < 8 ? 'orange' : 'red' }}>
                   {creditScore}
                 </td>
               </tr>
