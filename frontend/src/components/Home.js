@@ -4,6 +4,9 @@ import TransactionFlowChart from './TransactionFlowChart';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
+const IP = process.env.IP || "localhost";
+const PORT = process.env.PORT || 5000;
+
 const Home = () => {
   const [address, setAddress] = useState('');
   const [transactions, setTransactions] = useState([]);
@@ -12,7 +15,7 @@ const Home = () => {
   const handleFetchTransactions = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5000/api/transactions/${address}`);
+      const response = await axios.get(`http://${IP}:${PORT}/api/transactions/${address}`);
       const allTransactions = [...response.data.received, ...response.data.sent];
       setTransactions(allTransactions);
     } catch (error) {

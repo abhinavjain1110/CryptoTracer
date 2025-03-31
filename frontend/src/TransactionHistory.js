@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const IP = process.env.IP || "localhost";
+const PORT = process.env.PORT || 5000;
+
 const TransactionHistory = () => {
   const { address } = useParams();
   const [transactions, setTransactions] = useState([]);
@@ -12,7 +15,7 @@ const TransactionHistory = () => {
     const fetchTransactions = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:5000/api/transactions/${address}`);
+        const response = await axios.get(`http://${IP}:${PORT}/api/transactions/${address}`);
         setTransactions(response.data);
       } catch (error) {
         console.error('Error fetching transaction history:', error);

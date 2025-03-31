@@ -11,7 +11,7 @@ const App = () => {
   const handleFetchTransactions = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5000/api/transactions/${address}`);
+      const response = await axios.get(`http://${IP}:${PORT}/api/transactions/${address}`);
       setTransactions(response.data);
     } catch (error) {
       console.error('Error fetching transactions:', error);
@@ -59,6 +59,9 @@ import Footer from './components/Footer';
 import UpcomingFeatures from './components/UpcomingFeatures';
 import ScanAddr from './components/ScanAddr';
 
+const IP = process.env.IP || "localhost";
+const PORT = process.env.PORT || 5000;
+
 const App = () => {
   const [address, setAddress] = useState('');
   const [transactions, setTransactions] = useState([]);
@@ -72,8 +75,8 @@ const App = () => {
     setLoading(true);
     try {
       const [txResponse, balResponse] = await Promise.all([
-        axios.get(`http://localhost:5000/api/transactions/${address}`),
-        axios.get(`http://localhost:5000/api/balance/${address}`)
+        axios.get(`http://${IP}:${PORT}/api/transactions/${address}`),
+        axios.get(`http://${IP}:${PORT}/api/balance/${address}`)
       ]);
 
       const allTransactions = [...txResponse.data.received, ...txResponse.data.sent];
