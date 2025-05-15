@@ -1,0 +1,73 @@
+body, html {
+  background-color: white;
+  color: black;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.navbar{
+  justify-content: space-between;
+}
+.container {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  flex: 1; 
+}
+
+.input-group .form-control {
+  background-color: white;
+  color: black;
+  border: 2px solid #555;
+}
+
+.input-group .btn-primary {
+  background-color: white(163, 48, 73);
+  border-color:rgb(19, 5, 8) ;
+  color: black;
+  margin-left: 0.5cm;
+}
+
+
+.chart-container {
+  width: 100%;
+  height: 800px;
+  background-color: white;
+  color: black;
+
+}
+
+
+.tooltip {
+  position: absolute;
+  padding: 8px;
+  background-color: #000;
+  border: 1px solid #0ff;
+  border-radius: 5px;
+  color: #0ff;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.footer {
+  background-color: #ffffff; 
+  color: black;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  bottom: 0;
+}
+
+.footer-divider {
+  margin: 0;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh; 
+}

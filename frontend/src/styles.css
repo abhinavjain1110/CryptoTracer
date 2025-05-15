@@ -1,0 +1,80 @@
+/* Global styles */
+body, html {
+  background-color: white;
+  color: black;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Ensure the container and its child elements also follow the dark theme */
+.container {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  flex: 1; /* This allows the container to take up the remaining space */
+}
+
+/* Input fields and buttons */
+.input-group .form-control {
+  background-color: white;
+  color: black;
+  border: 2px solid #555;
+  border-radius: 5%;
+}
+
+.input-group .btn-primary {
+  background-color: white(163, 48, 73);
+  border-color:rgb(19, 5, 8) ;
+  color: black;
+  margin-left: 0.5cm;
+}
+
+
+.chart-container {
+  width: 100%;
+  height: 800px;
+  background-color: white;
+  color: black;
+
+}
+
+
+/* Tooltip styling */
+.tooltip {
+  position: absolute;
+  padding: 8px;
+  background-color: #000;
+  border: 1px solid #0ff;
+  border-radius: 5px;
+  color: #0ff;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Footer styling */
+.footer {
+  background-color: white;
+  color: black;
+  padding: 20px 0;
+  text-align: center;
+  flex-shrink: 0; /* Ensures the footer stays at the bottom */
+}
+
+.footer a {
+  color: black;
+  text-decoration: none;
+  width: 100%;
+  background-color: white;
+}
+.footer-divider {
+  border: none;
+  height: 2px; /* Increase the height for a thicker line */
+  background: linear-gradient(to right, rgb(7, 6, 7), #040124); /* Gradient effect */
+  margin: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
