@@ -49,8 +49,7 @@ const port = process.env.PORT || 5000;
 
 
 app.use(cors({
-  origin: 'https://crypto-tracer-two.vercel.app',
-  credentials: true 
+  origin: 'https://crypto-tracer-two.vercel.app'
 }));
 app.use(express.json());
 
