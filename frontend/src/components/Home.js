@@ -12,7 +12,8 @@ const Home = () => {
   const handleFetchTransactions = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5000/api/transactions/${address}`);
+      /* const response = await axios.get(`http://localhost:5000/api/transactions/${address}`); */
+      const response = await axios.get(`https://crypto-tracer-kutjeljqn-abhinavjain1110s-projects.vercel.app/api/transactions/${address}`);
       const allTransactions = [...response.data.received, ...response.data.sent];
       setTransactions(allTransactions);
     } catch (error) {

@@ -12,7 +12,8 @@ const TransactionHistory = () => {
     const fetchTransactions = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:5000/api/transactions/${address}`);
+        /* const response = await axios.get(`http://localhost:5000/api/transactions/${address}`); */
+        const response = await axios.get(`https://crypto-tracer-kutjeljqn-abhinavjain1110s-projects.vercel.app/api/transactions/${address}`);
         setTransactions(response.data);
       } catch (error) {
         console.error('Error fetching transaction history:', error);

@@ -72,8 +72,10 @@ const App = () => {
     setLoading(true);
     try {
       const [txResponse, balResponse] = await Promise.all([
-        axios.get(`http://localhost:5000/api/transactions/${address}`),
-        axios.get(`http://localhost:5000/api/balance/${address}`)
+        /* axios.get(`http://localhost:5000/api/transactions/${address}`),
+        axios.get(`http://localhost:5000/api/balance/${address}`) */
+        axios.get(`https://crypto-tracer-kutjeljqn-abhinavjain1110s-projects.vercel.app//transactions/${address}`),
+        axios.get(`https://crypto-tracer-kutjeljqn-abhinavjain1110s-projects.vercel.app//balance/${address}`)
       ]);
 
       const allTransactions = [...txResponse.data.received, ...txResponse.data.sent];

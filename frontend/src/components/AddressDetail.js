@@ -62,8 +62,10 @@ const AddressDetail = () => {
     const fetchTransactionHistory = async () => {
       try {
         const [txResponse, balResponse] = await Promise.all([
-          axios.get(`http://localhost:5000/api/transactions/${addressId}`),
-          axios.get(`http://localhost:5000/api/balance/${addressId}`)
+          /* axios.get(`http://localhost:5000/api/transactions/${addressId}`), */
+           axios.get(`https://crypto-tracer-kutjeljqn-abhinavjain1110s-projects.vercel.app/api/transactions/${addressId}`),
+          /* axios.get(`http://localhost:5000/api/balance/${addressId}`) */
+          axios.get(`https://crypto-tracer-kutjeljqn-abhinavjain1110s-projects.vercel.app/api/balance/${addressId}`)
         ]);
 
         const allTransactions = [...txResponse.data.received, ...txResponse.data.sent];
