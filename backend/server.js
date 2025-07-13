@@ -56,7 +56,7 @@ app.get('/api/transactions/:address', async (req, res) => {
   const apiKey = process.env.ETHERSCAN_API_KEY;
   
   try {
-    const response = await axios.get('https://api-sepolia.etherscan.io/api', {
+    const response = await axios.get('https://api.etherscan.io/api', {
       params: {
         module: 'account',
         action: 'txlist',
