@@ -51,6 +51,9 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => res.send('CryptoTracer'));
+
+
 app.get('/api/transactions/:address', async (req, res) => {
   const address = req.params.address;
   const apiKey = process.env.ETHERSCAN_API_KEY;
